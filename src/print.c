@@ -72,15 +72,15 @@
 	func(APKE_V2PKG_FORMAT,		"v2 package format error") \
 	func(APKE_V2PKG_INTEGRITY,	"v2 package integrity error") \
 	func(APKE_V2NDX_FORMAT,		"v2 index format error") \
-	func(APKE_PACKAGE_NOT_FOUND,	"could not find a repo which provides this package (check repositories file and run 'apk update')") \
+	func(APKE_PACKAGE_NOT_FOUND,	"could not find a repo which provides this package (check repositories file and run 'tatami refresh')") \
 	func(APKE_PACKAGE_NAME_SPEC,	"package name specification is invalid") \
-	func(APKE_INDEX_STALE,		"package mentioned in index not found (try 'apk update')") \
+	func(APKE_INDEX_STALE,		"package mentioned in index not found (try 'tatami refresh')") \
 	func(APKE_FILE_INTEGRITY,	"file integrity error") \
 	func(APKE_CACHE_NOT_AVAILABLE,	"cache not available") \
 	func(APKE_UVOL_NOT_AVAILABLE,	"uvol manager not available") \
 	func(APKE_UVOL_ERROR,		"uvol error") \
 	func(APKE_UVOL_ROOT,		"uvol not supported with --root") \
-	func(APKE_REMOTE_IO,		"remote server returned error (try 'apk update')") \
+	func(APKE_REMOTE_IO,		"remote server returned error (try 'tatami refresh')") \
 	func(APKE_NOT_EXTRACTED,	"file not extracted") \
 	func(APKE_REPO_SYNTAX,		"repositories file syntax error") \
 	func(APKE_REPO_KEYWORD,		"unsupported repositories file keyword") \

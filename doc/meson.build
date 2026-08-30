@@ -1,16 +1,16 @@
 man_filenames = [
-    'apk.8.scd',
-    'apk-cache.5.scd',
-    'apk-keys.5.scd',
-    'apk-package.5.scd',
-    'apk-protected_paths.5.scd',
-    'apk-repositories.5.scd',
-    'apk-v2.5.scd',
-    'apk-v3.5.scd',
-    'apk-world.5.scd',
+    'tatami.8.scd',
+    'tatami-cache.5.scd',
+    'tatami-keys.5.scd',
+    'tatami-package.5.scd',
+    'tatami-protected_paths.5.scd',
+    'tatami-repositories.5.scd',
+    'tatami-v2.5.scd',
+    'tatami-v3.5.scd',
+    'tatami-world.5.scd',
 ]
 foreach a : applets
-	man_filenames += [ 'apk-' + a + '.8.scd' ]
+	man_filenames += [ 'tatami-' + a + '.8.scd' ]
 endforeach
 
 man_files = files(man_filenames)

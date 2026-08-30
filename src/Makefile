@@ -95,7 +95,7 @@ else
       cmd_genhelp = echo \\\#define NO_HELP > $@
 endif
 
-$(obj)/help.h: $(src)/genhelp.lua $(wildcard doc/apk*.8.scd) FORCE
+$(obj)/help.h: $(src)/genhelp.lua $(wildcard doc/tatami*.8.scd) FORCE
 	$(call if_changed,genhelp)
 
 CFLAGS_help.o		:= -I$(obj)

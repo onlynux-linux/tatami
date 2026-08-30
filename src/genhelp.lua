@@ -1,22 +1,22 @@
 #!/usr/bin/lua5.3
 
 --[[
-Utility to convert SCDOC manpages to apk-tools help messages
+Utility to convert SCDOC manpages to tatami help messages
 
 General:
- - Wrangle *apk-applet*(SECTION) links
+ - Wrangle *tatami-applet*(SECTION) links
  - Uppercase _underlined_ things as they are "keywords"
  - Other format specs like ** to be removed
  - For options text, the first sentence (within the first line) is taken as the help text
 
-Main page: apk.8.scd
+Main page: tatami.8.scd
  - SYNOPSIS
  - COMMANDS has ## header with a table for commands list
  - GLOBAL OPTIONS and COMMIT OPTIONS for option group help
  - NOTES
 
-Applet pages: apk-*.8.scd
- - Take usage from SYNOPSIS, can have multiple lines like apk-version(8)
+Applet pages: tatami-*.8.scd
+ - Take usage from SYNOPSIS, can have multiple lines like tatami-version(8)
  - Take DESCRIPTION, take first paragraph, rewrap, and put as section in applet specific help
  - From OPTIONS take each option and it's first sentence (within the first line)
 --]]
@@ -63,7 +63,7 @@ function scdoc:SYNOPSIS_text(ln)
 end
 
 function scdoc:COMMANDS_text(ln)
-	ln = ln:gsub("apk%-(%S+)%(%d%)", "%1")
+	ln = ln:gsub("tatami%-(%S+)%(%d%)", "%1")
 	local ch = ln:sub(1,1)
 	local a, b = ln:match("^([[|:<]*)%s+(.+)")
 	if ch == '|' then
@@ -144,8 +144,8 @@ end
 
 function scdoc:parse_header(ln)
 	self.manpage, self.mansection = ln:match("^(%S*)%((%d*)%)")
-	if self.manpage:find("^apk%-") then
-		self.applet = self.manpage:sub(5):lower()
+	if self.manpage:find("^tatami%-") then
+		self.applet = self.manpage:sub(8):lower()
 	else
 		self.applet = self.manpage:upper()
 	end

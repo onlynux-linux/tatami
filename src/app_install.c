@@ -69,7 +69,7 @@ static int non_repository_check(struct apk_database *db)
 	apk_err(&db->ctx->out,
 		"You tried to add a non-repository package to system, "
 		"but it would be lost on next reboot. Enable package caching "
-		"(apk cache --help) or use --force-non-repository "
+		"(tatami cache --help) or use --force-non-repository "
 		"if you know what you are doing.");
 	return 1;
 }

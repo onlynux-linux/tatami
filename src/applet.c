@@ -35,7 +35,7 @@ struct apk_applet *apk_applet_find(const char *name)
 #ifndef NO_HELP
 static inline int is_group(struct apk_applet *applet, const char *topic)
 {
-	if (!applet) return strcmp(topic, "APK") == 0;
+	if (!applet) return strcmp(topic, "TATAMI") == 0;
 	if (strcmp(topic, applet->name) == 0) return 1;
 	if (strcmp(topic, "GLOBAL") == 0) return 1;
 	if (applet->optgroup_generation && strcmp(topic, "GENERATION") == 0) return 1;

@@ -433,7 +433,7 @@ int apk_solver_commit_changeset(struct apk_database *db,
 		apk_array_qsort(sorted, sort_change);
 
 		dump_packages(db, sorted, details ? cmp_non_repository_verbose : cmp_non_repository, false,
-			"NOTE: Consider running apk upgrade with --prune and/or --available.\n"
+			"NOTE: Consider running tatami upgrade with --prune and/or --available.\n"
 			"The following packages are no longer available from a repository");
 		r = dump_packages(db, sorted, cmp_remove, details,
 			"The following packages will be REMOVED");

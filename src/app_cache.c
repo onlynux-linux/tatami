@@ -91,7 +91,7 @@ static int cache_download(struct cache_ctx *cctx, struct apk_database *db, struc
 	r = apk_solver_solve(db, cctx->solver_flags, deps, &changeset);
 	apk_dependency_array_free(&deps);
 	if (r < 0) {
-		apk_err(out, "Unable to select packages. Run apk fix.");
+		apk_err(out, "Unable to select packages. Run tatami fix.");
 		return r;
 	}
 

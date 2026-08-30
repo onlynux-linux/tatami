@@ -1,5 +1,5 @@
 #!/usr/bin/lua5.3
--- Generate built-in apk help from scdoc manpages
+-- Generate built-in tatami help from scdoc manpages
 
 local function splittokens(s)
 	local res = {}
@@ -107,7 +107,7 @@ local function render(doc, out, enabled_applets)
 	if #doc.notes > 0 then
 		table.insert(out, "\n")
 		table.insert(out, table.concat(doc.notes, "\n"))
-		if doc.manpage == "apk" then render_footer(doc, out)
+		if doc.manpage == "tatami" then render_footer(doc, out)
 		else table.insert(out, "\n") end
 	end
 	table.insert(out, "\0")

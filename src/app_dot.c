@@ -47,7 +47,7 @@ static void start_graph(struct dot_ctx *ctx)
 		return;
 	ctx->not_empty = 1;
 
-	printf( "digraph \"apkindex\" {\n"
+	printf( "digraph \"tatamiindex\" {\n"
 		"  rankdir=LR;\n"
 		"  node [shape=box];\n");
 }
