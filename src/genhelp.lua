@@ -32,8 +32,8 @@ end
 
 -- Name completion rule per applet
 applet_argument_completion = {
-	add="available",
-	del="installed",
+	install="available",
+	remove="installed",
 	dot="available",
 	fetch="available",
 	fix="installed",

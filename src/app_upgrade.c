@@ -170,7 +170,7 @@ int apk_do_preupgrade(struct apk_database *db, unsigned short solver_flags, unsi
 	argv[apk_argc] = "--no-self-upgrade";
 	argv[apk_argc+1] = NULL;
 	execvp(argv[0], argv);
-	apk_err(out, "PANIC! Failed to re-execute new apk-tools!");
+	apk_err(out, "PANIC! Failed to re-execute new tatami!");
 	exit(1);
 
 ret:

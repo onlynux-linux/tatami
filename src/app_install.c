@@ -195,8 +195,8 @@ static int add_main(void *ctx, struct apk_ctx *ac, struct apk_string_array *args
 	return r;
 }
 
-static struct apk_applet apk_add = {
-	.name = "add",
+static struct apk_applet apk_install = {
+	.name = "install",
 	.options_desc = add_options_desc,
 	.optgroup_commit = 1,
 	.open_flags = APK_OPENF_WRITE,
@@ -206,4 +206,4 @@ static struct apk_applet apk_add = {
 	.main = add_main,
 };
 
-APK_DEFINE_APPLET(apk_add);
+APK_DEFINE_APPLET(apk_install);

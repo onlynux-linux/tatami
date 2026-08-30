@@ -189,8 +189,8 @@ static int del_main(void *pctx, struct apk_ctx *ac, struct apk_string_array *arg
 	return r;
 }
 
-static struct apk_applet apk_del = {
-	.name = "del",
+static struct apk_applet apk_remove = {
+	.name = "remove",
 	.options_desc = del_options_desc,
 	.optgroup_commit = 1,
 	.open_flags = APK_OPENF_WRITE | APK_OPENF_NO_AUTOUPDATE,
@@ -200,4 +200,4 @@ static struct apk_applet apk_del = {
 	.main = del_main,
 };
 
-APK_DEFINE_APPLET(apk_del);
+APK_DEFINE_APPLET(apk_remove);

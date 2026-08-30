@@ -84,6 +84,6 @@ void apk_applet_help(struct apk_applet *applet, struct apk_out *out)
 void apk_applet_help(struct apk_applet *applet, struct apk_out *out)
 {
 	fputc('\n', stdout);
-	apk_err(out, "This apk-tools has been built without help");
+	apk_err(out, "This tatami has been built without help");
 }
 #endif

@@ -1,16 +1,16 @@
-apk-add(8)
+apk-install(8)
 
 # NAME
 
-apk add - add or update constraints to _world_ and commit changes
+tatami install - add or update constraints to _world_ and commit changes
 
 # SYNOPSIS
 
-*apk add* [<_options_>...] [_constraints_|_file_]...
+*tatami install* [<_options_>...] [_constraints_|_file_]...
 
 # DESCRIPTION
 
-*apk add* adds or updates given constraints to _world_ (see *apk-world*(5))
+*tatami install* adds or updates given constraints to _world_ (see *apk-world*(5))
 and commit changes to disk. This usually involves installing new packages,
 but may also cause other changes to the installed packages.
 
@@ -27,7 +27,7 @@ To later upgrade or downgrade back to a repository version, use
 
 # OPTIONS
 
-*apk add* supports the commit options described in *apk*(8), as well as the
+*tatami install* supports the commit options described in *apk*(8), as well as the
 following options:
 
 *--initdb*
@@ -43,7 +43,7 @@ following options:
 	Deprecated alias for --usermode.
 
 *--upgrade*, *-u*
-	Upgrade _packages_ and their dependencies. Normally *apk add* will
+	Upgrade _packages_ and their dependencies. Normally *tatami install* will
 	avoid changing installed package unless it is required by the newly
 	added _packages_ or their dependencies. This changes the default
 	preference to upgrading the package to the latest installable version.
@@ -67,5 +67,5 @@ following options:
 	to synthesized version based on time.
 
 	One can use this to ensure that selected set of packages are installed,
-	and later the temporary modification be undone with *apk-del*(8) _NAME_
+	and later the temporary modification be undone with *apk-remove*(8) _NAME_
 	without removing packages that were installed earlier.

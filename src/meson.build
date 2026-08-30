@@ -146,7 +146,7 @@ if not subproject
 endif
 
 apk_exe = executable(
-	'apk',
+	'tatami',
 	apk_src,
 	install: not subproject,
 	dependencies: [

@@ -31,16 +31,16 @@ Each command is documented in detail on its manual page.
 
 ## PACKAGE INSTALLATION AND REMOVAL
 
-|[ *apk-add*(8)
+|[ *apk-install*(8)
 :< Add or modify constraints in _world_ and commit changes
-|  *apk-del*(8)
+|  *apk-remove*(8)
 :  Remove constraints from _world_ and commit changes
 
 ## SYSTEM MAINTENANCE
 
 |[ *apk-fix*(8)
 :< Fix, reinstall or upgrade packages without modifying _world_
-|  *apk-update*(8)
+|  *apk-refresh*(8)
 :  Update repository indexes
 |  *apk-upgrade*(8)
 :  Install upgrades available from repositories

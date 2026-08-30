@@ -42,10 +42,10 @@
 #include "apk_adb.h"
 #include "apk_fs.h"
 
-static const char * const apk_static_cache_dir = "var/cache/apk";
-static const char * const apk_world_file = "etc/apk/world";
-static const char * const apk_arch_file = "etc/apk/arch";
-static const char * const apk_lock_file = "lib/apk/db/lock";
+static const char * const apk_static_cache_dir = "var/cache/tatami";
+static const char * const apk_world_file = "etc/tatami/world";
+static const char * const apk_arch_file = "etc/tatami/arch";
+static const char * const apk_lock_file = "var/lib/tatami/db/lock";
 
 static struct apk_db_acl *apk_default_acl_dir, *apk_default_acl_file;
 
@@ -1050,7 +1050,7 @@ static int apk_db_fdb_read(struct apk_database *db, struct apk_istream *is, int 
 
 old_apk_tools:
 	/* Installed db should not have unsupported fields */
-	apk_err(out, "This apk-tools is too old to handle installed packages");
+	apk_err(out, "This tatami is too old to handle installed packages");
 	goto err_fmt;
 bad_entry:
 	apk_err(out, "FDB format error (line %d, entry '%c')", lineno, field);
@@ -1955,8 +1955,8 @@ static int setup_cache(struct apk_database *db)
 const char *apk_db_layer_name(int layer)
 {
 	switch (layer) {
-	case APK_DB_LAYER_ROOT: return "lib/apk/db";
-	case APK_DB_LAYER_UVOL: return "lib/apk/db-uvol";
+	case APK_DB_LAYER_ROOT: return "var/lib/tatami/db";
+	case APK_DB_LAYER_UVOL: return "var/lib/tatami/db-uvol";
 	default:
 		assert(!"invalid layer");
 		return 0;
@@ -2113,9 +2113,9 @@ int apk_db_open(struct apk_database *db)
 	} else {
 		apk_db_add_protected_path(db, APK_BLOB_STR("+etc"));
 		apk_db_add_protected_path(db, APK_BLOB_STR("@etc/init.d"));
-		apk_db_add_protected_path(db, APK_BLOB_STR("!etc/apk"));
+		apk_db_add_protected_path(db, APK_BLOB_STR("!etc/tatami"));
 		apk_dir_foreach_file(
-			db->root_fd, "etc/apk/protected_paths.d",
+			db->root_fd, "etc/tatami/protected_paths.d",
 			add_protected_paths_from_file, db,
 			file_not_dot_list);
 	}
@@ -2169,12 +2169,12 @@ int apk_db_open(struct apk_database *db)
 
 	if (!(ac->open_flags & APK_OPENF_NO_SYS_REPOS)) {
 		if (ac->repositories_file == NULL) {
-			add_repos_from_file(db, db->root_fd, NULL, "etc/apk/repositories");
+			add_repos_from_file(db, db->root_fd, NULL, "etc/tatami/repositories");
 			apk_dir_foreach_config_file(db->root_fd,
 				add_repos_from_file, db,
 				file_not_dot_list,
-				"etc/apk/repositories.d",
-				"lib/apk/repositories.d",
+				"etc/tatami/repositories.d",
+				"var/lib/tatami/repositories.d",
 				NULL);
 		} else {
 			add_repos_from_file(db, AT_FDCWD, NULL, ac->repositories_file);
@@ -2195,7 +2195,7 @@ int apk_db_open(struct apk_database *db)
 
 	if (db->compat_newfeatures) {
 		apk_warn(out,
-			"This apk-tools is OLD! Some packages %s.",
+			"This tatami is OLD! Some packages %s.",
 			db->compat_notinstallable ? "are not installable" : "might not function properly");
 	}
 	if (db->compat_depversions) {
@@ -2320,8 +2320,8 @@ int apk_db_write_config(struct apk_database *db)
 		return 0;
 
 	if (db->ctx->open_flags & APK_OPENF_CREATE) {
-		apk_make_dirs(db->root_fd, "lib/apk/db", 0755, 0755);
-		apk_make_dirs(db->root_fd, "etc/apk", 0755, 0755);
+		apk_make_dirs(db->root_fd, "var/lib/tatami/db", 0755, 0755);
+		apk_make_dirs(db->root_fd, "etc/tatami", 0755, 0755);
 	} else if (db->lock_fd < 0) {
 		apk_err(out, "Refusing to write db without write lock!");
 		return -1;

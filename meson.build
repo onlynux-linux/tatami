@@ -1,5 +1,5 @@
 project(
-	'apk-tools',
+	'tatami',
 	['c'],
 	default_options : ['c_std=gnu11', 'optimization=2', 'warning_level=1'],
 	version: run_command('./get-version.sh', check: true).stdout().strip(),
@@ -9,7 +9,7 @@ so_version = run_command('cat', 'SOVERSION', check: true).stdout().strip()
 
 pkgc = import('pkgconfig')
 
-apk_confdir = get_option('sysconfdir') / 'apk'
+apk_confdir = get_option('sysconfdir') / 'tatami'
 apk_libdir = get_option('libdir')
 
 lua_name = 'lua' + get_option('lua_version')
@@ -43,10 +43,10 @@ subproject = meson.is_subproject()
 # applet configuration
 applets = [
 	'adbdump',
-	'add',
+	'install',
 	'audit',
 	'cache',
-	'del',
+	'remove',
 	'extract',
 	'fetch',
 	'fix',
@@ -55,7 +55,7 @@ applets = [
 	'manifest',
 	'policy',
 	'query',
-	'update',
+	'refresh',
 	'upgrade',
 	'search',
 	'stats',

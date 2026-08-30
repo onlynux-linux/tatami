@@ -110,7 +110,7 @@ static int apk_sign_ctx_process_file(struct apk_sign_ctx *ctx, const struct apk_
 		/* APKv1.0 compatibility - first non-hidden file is
 		 * considered to start the data section of the file.
 		 * This does not make any sense if the file has v2.0
-		 * style .PKGINFO */
+		 * style .ONXINFO */
 		if (ctx->has_data_checksum)
 			return -APKE_V2PKG_FORMAT;
 		/* Error out early if identity part is missing */
@@ -164,7 +164,7 @@ static int apk_sign_ctx_process_file(struct apk_sign_ctx *ctx, const struct apk_
 	it can't do it alone. apk_sign_ctx_process_file() must be in the loop to
 	actually select which signature is to be verified and load the corresponding
 	public key into the context object, and	apk_sign_ctx_parse_pkginfo_line()
-	needs to be called when handling the .PKGINFO file to find any applicable
+	needs to be called when handling the .ONXINFO file to find any applicable
 	datahash and load it into the context for this function to check against. */
 static int apk_sign_ctx_mpart_cb(void *ctx, int part, apk_blob_t data)
 {
@@ -300,7 +300,7 @@ static int apk_extract_v2_entry(void *pctx, const struct apk_file_info *fi, stru
 			ectx->is_package = 1;
 			if (ectx->is_index) return -APKE_V2NDX_FORMAT;
 			if (!ectx->ops->v2meta) return -APKE_FORMAT_NOT_SUPPORTED;
-			if (strcmp(fi->name, ".PKGINFO") == 0) {
+			if (strcmp(fi->name, ".ONXINFO") == 0) {
 				return ectx->ops->v2meta(ectx, is);
 			} else if (strcmp(fi->name, ".INSTALL") == 0) {
 				return -APKE_V2PKG_FORMAT;

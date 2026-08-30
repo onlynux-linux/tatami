@@ -55,12 +55,12 @@ static int update_main(void *ctx, struct apk_ctx *ac, struct apk_string_array *a
 	return r;
 }
 
-static struct apk_applet apk_update = {
-	.name = "update",
+static struct apk_applet apk_refresh = {
+	.name = "refresh",
 	.open_flags = APK_OPENF_WRITE | APK_OPENF_ALLOW_ARCH,
 	.parse = update_parse_options,
 	.main = update_main,
 };
 
-APK_DEFINE_APPLET(apk_update);
+APK_DEFINE_APPLET(apk_refresh);
 

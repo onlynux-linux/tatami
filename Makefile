@@ -1,9 +1,9 @@
 ##
-# Building apk-tools
+# Building tatami
 
 -include config.mk
 
-PACKAGE := apk-tools
+PACKAGE := tatami
 VERSION := $(shell ./get-version.sh "$(FULL_VERSION)" "$(VERSION)")
 SO_VERSION := $(shell cat SOVERSION)
 
@@ -15,9 +15,9 @@ export PACKAGE VERSION SO_VERSION
 DESTDIR		:=
 SBINDIR		:= /sbin
 LIBDIR		:= /lib
-CONFDIR		:= /etc/apk
+CONFDIR		:= /etc/tatami
 MANDIR		:= /usr/share/man
-DOCDIR		:= /usr/share/doc/apk
+DOCDIR		:= /usr/share/doc/tatami
 INCLUDEDIR	:= /usr/include
 PKGCONFIGDIR	:= /usr/lib/pkgconfig
 
@@ -56,8 +56,8 @@ static:
 
 tag: check
 	TAG_VERSION=$$(cat VERSION); \
-	git commit . -m "apk-tools-$${TAG_VERSION}"; \
-	git tag -s v$${TAG_VERSION} -m "apk-tools-$${TAG_VERSION}"
+	git commit . -m "tatami-$${TAG_VERSION}"; \
+	git tag -s v$${TAG_VERSION} -m "tatami-$${TAG_VERSION}"
 
 src/: libfetch/
 

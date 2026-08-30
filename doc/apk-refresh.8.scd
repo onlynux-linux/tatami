@@ -1,16 +1,16 @@
-apk-update(8)
+apk-refresh(8)
 
 # NAME
 
-apk update - update repository indexes
+tatami refresh - update repository indexes
 
 # SYNOPSIS
 
-*apk update*
+*tatami refresh*
 
 # DESCRIPTION
 
-*apk update* forces updating of the indexes from all configured package
+*tatami refresh* forces updating of the indexes from all configured package
 repositories. This command is not needed in normal operation as all applets
 requiring indexes will automatically refresh them after caching time expires.
 
@@ -19,5 +19,5 @@ repositories.
 
 # OPTIONS
 
-*apk update* does not support any specific options. See *apk*(8) for global
+*tatami refresh* does not support any specific options. See *apk*(8) for global
 options.

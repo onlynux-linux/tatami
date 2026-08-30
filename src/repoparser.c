@@ -123,7 +123,7 @@ static int apk_repoparser_parse_set(struct apk_repoparser *rp, apk_blob_t line)
 	}
 
 	if (!apk_blob_split(line, APK_BLOB_STRLIT("="), &key, &value) ||
-	    apk_blob_starts_with(key, APK_BLOB_STRLIT("APK_")) ||
+	    apk_blob_starts_with(key, APK_BLOB_STRLIT("TATAMI_")) ||
 	    !isalpha(key.ptr[0]) || apk_blob_spn(key, APK_CTYPE_VARIABLE_NAME, NULL, NULL)) {
 		apk_warn(rp->out, "%s:%d: invalid variable definition: " BLOB_FMT, rp->file, rp->line, BLOB_PRINTF(line));
 		return -APKE_REPO_VARIABLE;

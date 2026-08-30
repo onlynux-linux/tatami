@@ -1,6 +1,7 @@
-src/apk
-src/apk.static
+src/tatami
+src/tatami.static
 src/help.h
+/build/
 libfetch/*err.h
 *.a
 *.o

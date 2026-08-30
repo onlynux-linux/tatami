@@ -308,8 +308,8 @@ static int run_commit_hooks(struct apk_database *db, int type)
 	struct apk_commit_hook hook = { .db = db, .type = type };
 	return apk_dir_foreach_config_file(db->root_fd,
 		run_commit_hook, &hook, apk_filename_is_hidden,
-		"etc/apk/commit_hooks.d",
-		"lib/apk/commit_hooks.d",
+		"etc/tatami/commit_hooks.d",
+		"var/lib/tatami/commit_hooks.d",
 		NULL);
 }
 

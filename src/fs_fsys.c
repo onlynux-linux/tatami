@@ -71,9 +71,9 @@ static const char *format_tmpname(struct apk_digest_ctx *dctx, apk_blob_t pkgctx
 
 	apk_blob_push_blob(&b, dirname);
 	if (dirname.len > 0) {
-		apk_blob_push_blob(&b, APK_BLOB_STR("/.apk."));
+		apk_blob_push_blob(&b, APK_BLOB_STR("/.onx."));
 	} else {
-		apk_blob_push_blob(&b, APK_BLOB_STR(".apk."));
+		apk_blob_push_blob(&b, APK_BLOB_STR(".onx."));
 	}
 	apk_blob_push_hexdump(&b, APK_BLOB_PTR_LEN((char *)d.data, 24));
 	apk_blob_push_blob(&b, APK_BLOB_PTR_LEN("", 1));

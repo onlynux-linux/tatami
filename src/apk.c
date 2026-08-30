@@ -36,7 +36,7 @@ int apk_argc;
 
 static void version(struct apk_out *out, const char *prefix)
 {
-	apk_out_fmt(out, prefix, "apk-tools " APK_VERSION ", compiled for " APK_DEFAULT_ARCH ".");
+	apk_out_fmt(out, prefix, "tatami " APK_VERSION ", compiled for " APK_DEFAULT_ARCH ".");
 }
 
 #define GLOBAL_OPTIONS(OPT) \
@@ -521,8 +521,8 @@ static int load_config(struct apk_ctx *ac)
 	apk_blob_t space = APK_BLOB_STRLIT(" "), line, value;
 	int r;
 
-	is = apk_istream_from_file(AT_FDCWD, getenv("APK_CONFIG") ?: "/etc/apk/config");
-	if (is == ERR_PTR(-ENOENT)) is = apk_istream_from_file(AT_FDCWD, "/lib/apk/config");
+	is = apk_istream_from_file(AT_FDCWD, getenv("TATAMI_CONFIG") ?: "/etc/tatami/config");
+	if (is == ERR_PTR(-ENOENT)) is = apk_istream_from_file(AT_FDCWD, "/var/lib/tatami/config");
 	if (IS_ERR(is)) return PTR_ERR(is);
 
 	while (apk_istream_get_delim(is, newline, &line) == 0) {
@@ -546,8 +546,8 @@ static int load_config(struct apk_ctx *ac)
 static struct apk_applet *applet_from_arg0(const char *arg0)
 {
 	const char *prog = apk_last_path_segment(arg0);
-	if (strncmp(prog, "apk_", 4) != 0) return NULL;
-	return apk_applet_find(prog + 4);
+	if (strncmp(prog, "tatami_", 7) != 0) return NULL;
+	return apk_applet_find(prog + 7);
 }
 
 static int parse_options(int argc, char **argv, struct apk_string_array **args, struct apk_ctx *ac)
@@ -637,7 +637,7 @@ int main(int argc, char **argv)
 	apk_crypto_init();
 	apk_ctx_init(&ctx);
 	ctx.on_tty = isatty(STDOUT_FILENO);
-	ctx.interactive = (access("/etc/apk/interactive", F_OK) == 0) ? APK_AUTO : APK_NO;
+	ctx.interactive = (access("/etc/tatami/interactive", F_OK) == 0) ? APK_AUTO : APK_NO;
 	ctx.pretty_print = APK_AUTO;
 	ctx.out.progress = APK_AUTO;
 
@@ -653,7 +653,7 @@ int main(int argc, char **argv)
 
 	if (applet == NULL) {
 		if (apk_array_len(args)) {
-			apk_err(out, "'%s' is not an apk command. See 'apk --help'.", args->item[0]);
+			apk_err(out, "'%s' is not a tatami command. See 'tatami --help'.", args->item[0]);
 			return 1;
 		}
 		return usage(out);
@@ -671,7 +671,7 @@ int main(int argc, char **argv)
 	if (ctx.open_flags) {
 		r = apk_db_open(&db);
 		if (r != 0) {
-			apk_err(out, "Failed to open apk database: %s", apk_error_str(r));
+			apk_err(out, "Failed to open tatami database: %s", apk_error_str(r));
 			goto err;
 		}
 	}

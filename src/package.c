@@ -738,9 +738,9 @@ int apk_ipkg_run_script(struct apk_installed_package *ipkg,
 			struct apk_database *db,
 			unsigned int type, char **argv)
 {
-	// When memfd_create is not available store the script in /lib/apk/exec
+	// When memfd_create is not available store the script in /var/lib/tatami/exec
 	// and hope it allows executing.
-	static const char script_exec_dir[] = "lib/apk/exec";
+	static const char script_exec_dir[] = "var/lib/tatami/exec";
 	struct apk_out *out = &db->ctx->out;
 	struct apk_package *pkg = ipkg->pkg;
 	const char *reason = "failed to execute: ";

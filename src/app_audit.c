@@ -84,7 +84,7 @@ static int audit_option_parse(void *applet_ctx, struct apk_ctx *ac, int opt, con
 					"@etc/init.d\n"
 					"-dev\n"
 					"-home\n"
-					"-lib/apk\n"
+					"-var/lib/tatami\n"
 					"-lib/rc/cache\n"
 					"-proc\n"
 					"-root\n"

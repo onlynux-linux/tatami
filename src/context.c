@@ -33,10 +33,10 @@ void apk_ctx_init(struct apk_ctx *ac)
 	ac->legacy_info = 1;
 	ac->root_tmpfs = APK_AUTO;
 	ac->sync = APK_AUTO;
-	ac->apknew_suffix = ".apk-new";
-	ac->default_pkgname_spec = APK_BLOB_STRLIT("${name}-${version}.apk");
-	ac->default_reponame_spec = APK_BLOB_STRLIT("${arch}/${name}-${version}.apk");;
-	ac->default_cachename_spec = APK_BLOB_STRLIT("${name}-${version}.${hash:8}.apk");
+	ac->apknew_suffix = ".onx-new";
+	ac->default_pkgname_spec = APK_BLOB_STRLIT("${name}-${version}.onx");
+	ac->default_reponame_spec = APK_BLOB_STRLIT("${arch}/${name}-${version}.onx");
+	ac->default_cachename_spec = APK_BLOB_STRLIT("${name}-${version}.${hash:8}.onx");
 	apk_digest_ctx_init(&ac->dctx, APK_DIGEST_SHA256);
 }
 
@@ -67,7 +67,7 @@ int apk_ctx_prepare(struct apk_ctx *ac)
 		ac->open_flags |= APK_OPENF_READ;
 	}
 	if (ac->flags & APK_ALLOW_UNTRUSTED) ac->trust.allow_untrusted = 1;
-	if (!ac->cache_dir) ac->cache_dir = "etc/apk/cache";
+	if (!ac->cache_dir) ac->cache_dir = "etc/tatami/cache";
 	else ac->cache_dir_set = 1;
 	if (!ac->root) ac->root = "/";
 	if (ac->cache_predownload) ac->cache_packages = 1;
@@ -112,7 +112,7 @@ int apk_ctx_prepare(struct apk_ctx *ac)
 	}
 
 	if ((ac->open_flags & APK_OPENF_WRITE) && !(ac->flags & APK_NO_LOGFILE)) {
-		const char *log_path = "var/log/apk.log";
+		const char *log_path = "var/log/tatami.log";
 		const int lflags = O_WRONLY | O_APPEND | O_CREAT | O_CLOEXEC;
 		int fd = openat(ac->root_fd, log_path, lflags, 0644);
 		if (fd < 0) {
@@ -128,7 +128,7 @@ int apk_ctx_prepare(struct apk_ctx *ac)
 
 	if (ac->flags & APK_PRESERVE_ENV) {
 		for (int i = 0; environ[i]; i++)
-			if (strncmp(environ[i], "APK_", 4) != 0)
+			if (strncmp(environ[i], "TATAMI_", 7) != 0)
 				apk_string_array_add(&ac->script_environment, environ[i]);
 	} else {
 		apk_string_array_add(&ac->script_environment, "PATH=/usr/sbin:/usr/bin:/sbin:/bin");
@@ -155,8 +155,8 @@ struct apk_trust *apk_ctx_get_trust(struct apk_ctx *ac)
 			apk_dir_foreach_config_file(ac->root_fd,
 				__apk_ctx_load_pubkey, &ac->trust,
 				apk_filename_is_hidden,
-				"etc/apk/keys",
-				"lib/apk/keys",
+				"etc/tatami/keys",
+				"var/lib/tatami/keys",
 				NULL);
 		} else {
 			apk_dir_foreach_file(ac->root_fd, ac->keys_dir,

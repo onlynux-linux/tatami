@@ -10,12 +10,12 @@ scdocs-y += \
 	apk-adbdump.8 \
 	apk-adbgen.8 \
 	apk-adbsign.8 \
-	apk-add.8 \
+	apk-install.8 \
 	apk-audit.8 \
 	apk-cache.8 \
 	apk-convndx.8 \
 	apk-convdb.8 \
-	apk-del.8 \
+	apk-remove.8 \
 	apk-dot.8 \
 	apk-extract.8 \
 	apk-fetch.8 \
@@ -30,7 +30,7 @@ scdocs-y += \
 	apk-protected_paths.5 \
 	apk-query.8 \
 	apk-stats.8 \
-	apk-update.8 \
+	apk-refresh.8 \
 	apk-upgrade.8 \
 	apk-verify.8 \
 	apk-version.8
