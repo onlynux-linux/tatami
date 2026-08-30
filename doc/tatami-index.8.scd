@@ -48,4 +48,4 @@ will accept it. See *abuild-sign*(1) for details.
 # ENVIRONMENT
 
 *SOURCE_DATE_EPOCH*
-	Used as the build time for tar file headers in APKINDEX.tar.gz.
+	Used as the build time for tar file headers in ONXINDEX.tar.gz.

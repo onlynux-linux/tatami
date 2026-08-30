@@ -314,7 +314,7 @@ static int apk_extract_v2_entry(void *pctx, const struct apk_file_info *fi, stru
 			if (strcmp(fi->name, "DESCRIPTION") == 0 && fi->size <= 160) {
 				free(ectx->desc.ptr);
 				apk_blob_from_istream(is, fi->size, &ectx->desc);
-			} else if (strcmp(fi->name, "APKINDEX") == 0) {
+			} else if (strcmp(fi->name, "ONXINDEX") == 0) {
 				return ectx->ops->v2index(ectx, &ectx->desc, is);
 			}
 		}

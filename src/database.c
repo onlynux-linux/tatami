@@ -654,7 +654,7 @@ int apk_repo_index_cache_url(struct apk_database *db, struct apk_repository *rep
 {
 	int r = apk_repo_fd(db, &db->cache_repository, fd);
 	if (r < 0) return r;
-	return apk_blob_subst(buf, len, APK_BLOB_STRLIT("APKINDEX.${hash:8}.tar.gz"), apk_repo_subst, repo);
+	return apk_blob_subst(buf, len, APK_BLOB_STRLIT("ONXINDEX.${hash:8}.tar.gz"), apk_repo_subst, repo);
 }
 
 int apk_repo_package_url(struct apk_database *db, struct apk_repository *repo, struct apk_package *pkg,

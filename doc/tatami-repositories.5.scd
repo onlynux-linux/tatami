@@ -85,7 +85,7 @@ Otherwise the *type* is one of the repository types, and the path resolution
 works as follows:
 	- *url* is the *base_url* to the repository
 	- index (*v3*) is at *$base_url/$arch/Packages.adb*
-	- index (*v2*) is at *$base_url/$arch/APKINDEX.tar.gz*
+	- index (*v2*) is at *$base_url/$arch/ONXINDEX.tar.gz*
 	- default package path: *$base_url/$arch/$name-$version.onx*
 
 If the index file has a *pkgname-spec* set, it is used to construct the package path.

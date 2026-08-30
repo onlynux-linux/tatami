@@ -213,7 +213,7 @@ static int index_main(void *ctx, struct apk_ctx *ac, struct apk_string_array *ar
 	time_t mtime = apk_get_build_time(time(NULL));
 	memset(&fi, 0, sizeof(fi));
 	fi.mode = 0644 | S_IFREG;
-	fi.name = "APKINDEX";
+	fi.name = "ONXINDEX";
 	fi.mtime = mtime;
 	counter = apk_ostream_counter(&fi.size);
 	index_write(ictx, db, counter);

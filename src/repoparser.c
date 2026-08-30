@@ -189,7 +189,7 @@ int apk_repoparser_parse(struct apk_repoparser *rp, apk_blob_t line, bool allow_
 	const char *index_file = NULL;
 	switch (type) {
 	case APK_REPOTYPE_V2:
-		index_file = "APKINDEX.tar.gz";
+		index_file = "ONXINDEX.tar.gz";
 		break;
 	case APK_REPOTYPE_V3:
 		index_file = "Packages.adb";
