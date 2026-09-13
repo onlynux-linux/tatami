@@ -109,9 +109,6 @@ static int fsys_file_extract(struct apk_ctx *ac, const struct apk_file_info *fi,
 	}
 
 	switch (fi->mode & S_IFMT) {
-	case S_IFDIR:
-		if (mkdirat(atfd, fn, fi->mode & 07777) < 0 && errno != EEXIST) return -errno;
-		break;
 	case S_IFREG:
 		if (!link_target) {
 			int flags = O_RDWR | O_CREAT | O_TRUNC | O_CLOEXEC | O_EXCL;
@@ -128,9 +125,11 @@ static int fsys_file_extract(struct apk_ctx *ac, const struct apk_file_info *fi,
 			}
 		} else {
 			// Hardlink needs to be done against the temporary name
+			apk_blob_t b_link_target = APK_BLOB_STR(link_target);
+			if (apk_fs_is_malicious_pathname(b_link_target)) return -APKE_ADB_SCHEMA;
 			if (pkgctx.ptr)
 				link_target = format_tmpname(&ac->dctx, pkgctx, get_dirname(link_target),
-					APK_BLOB_STR(link_target), tmpname_linktarget);
+					b_link_target, tmpname_linktarget);
 			if (linkat(atfd, link_target, atfd, fn, 0) < 0) return -errno;
 		}
 		break;
@@ -143,6 +142,8 @@ static int fsys_file_extract(struct apk_ctx *ac, const struct apk_file_info *fi,
 		if (extract_flags & APK_FSEXTRACTF_NO_DEVICES) return -APKE_NOT_EXTRACTED;
 		if (mknodat(atfd, fn, fi->mode, fi->device) < 0) return -errno;
 		break;
+	default:
+		return -APKE_NOT_EXTRACTED;
 	}
 
 	ret |= fsys_fixup_permissions(atfd, fn, fi->mode, fi->uid, fi->gid, false, extract_flags);
@@ -267,6 +268,7 @@ bool apk_fs_is_malicious_filename(apk_blob_t file)
 		if (ptr[i] < 0x20 || ptr[i] == '/' || ptr[i] == 0x7f) return true;
 	}
 	switch (file.len) {
+	case 5+48: return apk_blob_starts_with(file, APK_BLOB_STRLIT(".apk."));
 	case 2: if (ptr[1] != '.') break; // fallthrough
 	case 1: if (ptr[0] != '.') break; // fallthrough
 	case 0: return true;
